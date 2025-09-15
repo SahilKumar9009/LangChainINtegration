@@ -5,7 +5,7 @@
 // import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
 // import dotenv from "dotenv";
 
-import { runChatbot, visualizeGraph } from "./BasicIntegrations/ChatBot.js";
+// import { runChatbot, visualizeGraph } from "./BasicIntegrations/ChatBot.js";
 
 // const model = new ChatGoogleGenerativeAI({
 //   model: "gemini-1.5-pro",
@@ -113,13 +113,13 @@ import { runChatbot, visualizeGraph } from "./BasicIntegrations/ChatBot.js";
 // main().catch(console.error);
 
 // Auto-run if this is the main module
-if (import.meta.url === `file://${process.argv[1]}`) {
-  // Show the theory visualization
-  visualizeGraph();
+// if (import.meta.url === `file://${process.argv[1]}`) {
+// Show the theory visualization
+//   visualizeGraph();
 
-  // Start interactive chatbot
-  runChatbot();
+// Start interactive chatbot
+//   runChatbot();
 
-  // Or run single interaction (comment out runChatbot() above):
-  // singleInteraction();
-}
+// Or run single interaction (comment out runChatbot() above):
+// singleInteraction();
+// }
