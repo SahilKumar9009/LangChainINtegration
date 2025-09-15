@@ -5,6 +5,8 @@
 // import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
 // import dotenv from "dotenv";
 
+import { runChatbot, visualizeGraph } from "./BasicIntegrations/ChatBot.js";
+
 // const model = new ChatGoogleGenerativeAI({
 //   model: "gemini-1.5-pro",
 //   temperature: 0.1,
@@ -49,48 +51,75 @@
 
 // runAgent();
 
-// agent_gemini.mts
+// import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
+// import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+// import { MemorySaver } from "@langchain/langgraph";
+// import { HumanMessage } from "@langchain/core/messages";
+// import { createReactAgent } from "@langchain/langgraph/prebuilt";
+// import dotenv from "dotenv";
 
-import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
-import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
-import { MemorySaver } from "@langchain/langgraph";
-import { HumanMessage } from "@langchain/core/messages";
-import { createReactAgent } from "@langchain/langgraph/prebuilt";
-import dotenv from "dotenv";
+// dotenv.config();
 
-dotenv.config();
+// process.env.TAVILY_API_KEY = process.env.TAVILY_API_KEY;
+// const agentTools = [new TavilySearchResults({ maxResults: 3 })];
 
-process.env.TAVILY_API_KEY = process.env.TAVILY_API_KEY;
-const agentTools = [new TavilySearchResults({ maxResults: 3 })];
+// const agentModel = new ChatGoogleGenerativeAI({
+//   model: "gemini-2.0-flash",
+//   temperature: 0,
+//   apiKey: process.env.GEMINI_API_KEY!,
+// });
 
-const agentModel = new ChatGoogleGenerativeAI({
-  model: "gemini-2.0-flash",
-  temperature: 0,
-  apiKey: process.env.GEMINI_API_KEY!,
-});
+// const agentCheckpointer = new MemorySaver();
+// const agent = createReactAgent({
+//   llm: agentModel,
+//   tools: agentTools,
+//   checkpointSaver: agentCheckpointer,
+// });
 
-const agentCheckpointer = new MemorySaver();
-const agent = createReactAgent({
-  llm: agentModel,
-  tools: agentTools,
-  checkpointSaver: agentCheckpointer,
-});
+// // Now use the agent
+// const agentFinalState = await agent.invoke(
+//   { messages: [new HumanMessage("latest about ai")] },
+//   { configurable: { thread_id: "42" } }
+// );
 
-// Now use the agent
-const agentFinalState = await agent.invoke(
-  { messages: [new HumanMessage("latest about ai")] },
-  { configurable: { thread_id: "42" } }
-);
+// console.log(
+//   agentFinalState.messages[agentFinalState.messages.length - 1]!.content
+// );
 
-console.log(
-  agentFinalState.messages[agentFinalState.messages.length - 1]!.content
-);
+// const agentNextState = await agent.invoke(
+//   { messages: [new HumanMessage("what about ny")] },
+//   { configurable: { thread_id: "42" } }
+// );
 
-const agentNextState = await agent.invoke(
-  { messages: [new HumanMessage("what about ny")] },
-  { configurable: { thread_id: "42" } }
-);
+// console.log(
+//   agentNextState.messages[agentNextState.messages.length - 1]!.content
+// );
 
-console.log(
-  agentNextState.messages[agentNextState.messages.length - 1]!.content
-);
+// import { tavily } from "@tavily/core";
+// import dotenv from "dotenv";
+
+// dotenv.config();
+
+// async function main() {
+//   const tvly = tavily({
+//     apiKey: process.env.TAVILY_API_KEY!,
+//   });
+
+//   const response = await tvly.search("who is leon messi");
+
+//   console.log("Search response:", response);
+// }
+
+// main().catch(console.error);
+
+// Auto-run if this is the main module
+if (import.meta.url === `file://${process.argv[1]}`) {
+  // Show the theory visualization
+  visualizeGraph();
+
+  // Start interactive chatbot
+  runChatbot();
+
+  // Or run single interaction (comment out runChatbot() above):
+  // singleInteraction();
+}
