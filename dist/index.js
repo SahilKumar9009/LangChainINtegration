@@ -63,7 +63,7 @@ const agent = createReactAgent({
     checkpointSaver: agentCheckpointer,
 });
 // Now use the agent
-const agentFinalState = await agent.invoke({ messages: [new HumanMessage("what is the current weather in sf")] }, { configurable: { thread_id: "42" } });
+const agentFinalState = await agent.invoke({ messages: [new HumanMessage("latest about ai")] }, { configurable: { thread_id: "42" } });
 console.log(agentFinalState.messages[agentFinalState.messages.length - 1].content);
 const agentNextState = await agent.invoke({ messages: [new HumanMessage("what about ny")] }, { configurable: { thread_id: "42" } });
 console.log(agentNextState.messages[agentNextState.messages.length - 1].content);

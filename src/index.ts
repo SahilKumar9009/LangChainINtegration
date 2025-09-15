@@ -57,9 +57,12 @@ import { MemorySaver } from "@langchain/langgraph";
 import { HumanMessage } from "@langchain/core/messages";
 import { createReactAgent } from "@langchain/langgraph/prebuilt";
 import dotenv from "dotenv";
-process.env.TAVILY_API_KEY = "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";
-const agentTools = [new TavilySearchResults({ maxResults: 3 })];
+
 dotenv.config();
+
+process.env.TAVILY_API_KEY = process.env.TAVILY_API_KEY;
+const agentTools = [new TavilySearchResults({ maxResults: 3 })];
+
 const agentModel = new ChatGoogleGenerativeAI({
   model: "gemini-2.0-flash",
   temperature: 0,
