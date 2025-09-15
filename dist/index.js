@@ -4,7 +4,7 @@
 // import { MemorySaver } from "@langchain/langgraph";
 // import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
 // import dotenv from "dotenv";
-import { runChatbot, visualizeGraph } from "./BasicIntegrations/ChatBot.js";
+// import { runChatbot, visualizeGraph } from "./BasicIntegrations/ChatBot.js";
 // const model = new ChatGoogleGenerativeAI({
 //   model: "gemini-1.5-pro",
 //   temperature: 0.1,
@@ -89,12 +89,28 @@ import { runChatbot, visualizeGraph } from "./BasicIntegrations/ChatBot.js";
 // }
 // main().catch(console.error);
 // Auto-run if this is the main module
-if (import.meta.url === `file://${process.argv[1]}`) {
-    // Show the theory visualization
-    visualizeGraph();
-    // Start interactive chatbot
-    runChatbot();
-    // Or run single interaction (comment out runChatbot() above):
-    // singleInteraction();
-}
+// if (import.meta.url === `file://${process.argv[1]}`) {
+// Show the theory visualization
+//   visualizeGraph();
+// Start interactive chatbot
+//   runChatbot();
+// Or run single interaction (comment out runChatbot() above):
+// singleInteraction();
+// }
+import { ChatGoogleGenerativeAI } from "@langchain/google-genai";
+import { HumanMessage } from "@langchain/core/messages";
+import { createReactAgent } from "@langchain/langgraph/prebuilt";
+import { MemorySaver } from "@langchain/langgraph";
+import { TavilySearchResults } from "@langchain/community/tools/tavily_search";
+import dotenv from "dotenv";
+const model = new ChatGoogleGenerativeAI({
+    model: "gemini-1.5-pro",
+    temperature: 0.1,
+    apiKey: "AIzaSyAj9Px9MSZH3SBerJUSPDCxYC4EUVyZLws",
+});
+const generateImage = async (prompt) => {
+    const response = await model.invoke([new HumanMessage(prompt)]);
+    console.log("in the image", response);
+};
+generateImage("a cute cat");
 //# sourceMappingURL=index.js.map
